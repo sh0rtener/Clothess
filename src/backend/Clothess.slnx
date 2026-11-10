@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Core/Clothess.Core/Clothess.Core.csproj" />
+    <Project Path="Core/Clothess.UseCases/Clothess.UseCases.csproj" />
+  </Folder>
+  <Folder Name="/Infra/">
+    <Project Path="Infra/Clothess.Persistense/Clothess.Persistense.csproj" />
+  </Folder>
+  <Folder Name="/Presenters/">
+    <Project Path="Presenters/Clothess.WebApi/Clothess.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Clothess.UnitTests/Clothess.UnitTests.csproj" />
+  </Folder>
+</Solution>

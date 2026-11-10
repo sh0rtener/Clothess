@@ -1,0 +1,36 @@
+name: Build docker-compose (dev)
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "infra/docker-compose.yml"
+      - "src/**"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "infra/docker-compose.yml"
+      - "src/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Create .env file
+        run: cd infra \
+             && touch .env \
+             && echo "POSTGRES_USER=postgres" >> .env \
+             && echo "POSTGRES_HOST=postgres" >> .env \
+             && echo "POSTGRES_PASSWORD=postgres" >> .env \
+             && cd ..
+
+      - name: Validate compose file
+        run: docker compose -f infra/docker-compose.yml config
+
+      - name: Build all services
+        run: docker compose -f infra/docker-compose.yml build
